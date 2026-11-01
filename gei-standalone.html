@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEI Open Research Initiative</title>
+<meta name="description" content="Six disciplines. One open investigation. GEI invites Hebrew scholars, biblical researchers, engineers, hydrologists, archaeologists, and mechanical engineers to examine an alternative reading of Genesis 1-6.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gei-cyan:#2fd2ff;--gei-blue:#3d3dea;--gei-magenta:#f310ba;--gei-soft-pink:#ff9df2;
+  --gei-near-black:#06070d;--gei-dark-navy:#0a0e1a;--gei-surface:#111827;
+  --gei-surface-light:#1f2937;--gei-border:#374151;--gei-text:#f3f4f6;--gei-text-muted:#9ca3af;
+}
+body{background:var(--gei-near-black);color:var(--gei-text);font-family:Arial,Helvetica,sans-serif;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+
+/* Layout */
+.container{max-width:1280px;margin:0 auto;padding:0 1rem}
+@media(min-width:640px){.container{padding:0 1.5rem}}
+@media(min-width:1024px){.container{padding:0 2rem}}
+
+/* Header */
+.header{position:sticky;top:0;z-index:50;background:rgba(6,7,13,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--gei-border)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:4rem}
+.header-brand{display:flex;align-items:center;gap:.5rem;color:var(--gei-cyan);font-weight:700;font-size:1.125rem;letter-spacing:-.025em}
+.header-brand-sub{color:var(--gei-text-muted);font-weight:400;margin-left:.25rem;display:none}
+@media(min-width:640px){.header-brand-sub{display:inline}}
+.nav{display:none;align-items:center;gap:.25rem}
+@media(min-width:768px){.nav{display:flex}}
+.nav a{padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;font-weight:500;color:var(--gei-text-muted);transition:color .15s,background .15s}
+.nav a:hover{color:var(--gei-text);background:var(--gei-surface-light)}
+.header-auth{display:none;align-items:center;gap:.75rem}
+@media(min-width:768px){.header-auth{display:flex}}
+.btn-sign-up{padding:.5rem 1rem;background:var(--gei-cyan);color:var(--gei-near-black);font-size:.875rem;font-weight:600;border-radius:.375rem;transition:opacity .15s}
+.btn-sign-up:hover{opacity:.9}
+.mobile-toggle{display:flex;padding:.5rem;color:var(--gei-text-muted);background:none;border:none;cursor:pointer}
+@media(min-width:768px){.mobile-toggle{display:none}}
+.mobile-nav{display:none;padding-bottom:1rem;border-top:1px solid var(--gei-border);margin-top:.5rem;padding-top:.5rem}
+.mobile-nav.open{display:block}
+@media(min-width:768px){.mobile-nav{display:none!important}}
+.mobile-nav a{display:block;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;font-weight:500;color:var(--gei-text-muted)}
+.mobile-nav a:hover{color:var(--gei-text)}
+.mobile-auth{margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--gei-border);display:flex;flex-direction:column;gap:.5rem;padding-left:.75rem;padding-right:.75rem}
+
+/* Blueprint grid */
+.blueprint-grid{
+  background-image:linear-gradient(rgba(61,61,234,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(61,61,234,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.flow-lines{position:relative}
+.flow-lines::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(47,210,255,.05) 0%,transparent 70%);pointer-events:none}
+
+/* Gradient text */
+.gradient-text{
+  background:linear-gradient(135deg,var(--gei-cyan),var(--gei-blue),var(--gei-magenta));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;padding:5rem 0}
+@media(min-width:640px){.hero{padding:7rem 0}}
+@media(min-width:1024px){.hero{padding:9rem 0}}
+.hero-content{max-width:48rem;position:relative;z-index:1}
+.hero h1{font-size:2.25rem;font-weight:700;letter-spacing:-.025em;line-height:1.1}
+@media(min-width:640px){.hero h1{font-size:3rem}}
+@media(min-width:1024px){.hero h1{font-size:3.75rem}}
+.hero-sub{margin-top:1rem;font-size:1.25rem;color:var(--gei-cyan);font-weight:500}
+@media(min-width:640px){.hero-sub{font-size:1.5rem}}
+.hero-desc{margin-top:1.5rem;font-size:1.125rem;color:var(--gei-text-muted);line-height:1.75;max-width:42rem}
+.hero-note{margin-top:1rem;font-size:.875rem;color:var(--gei-text-muted);font-style:italic}
+.hero-actions{margin-top:2rem;display:flex;flex-direction:column;gap:1rem}
+@media(min-width:640px){.hero-actions{flex-direction:row}}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1.5rem;background:var(--gei-cyan);color:var(--gei-near-black);font-weight:700;border-radius:.5rem;transition:opacity .15s;font-size:1rem;border:none;cursor:pointer}
+.btn-primary:hover{opacity:.9}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1.5rem;border:2px solid var(--gei-cyan);color:var(--gei-cyan);font-weight:700;border-radius:.5rem;transition:background .15s;font-size:1rem;background:none;cursor:pointer}
+.btn-outline:hover{background:rgba(47,210,255,.1)}
+
+/* Integrity notice */
+.integrity{background:var(--gei-surface);border-top:1px solid var(--gei-border);border-bottom:1px solid var(--gei-border);padding:1.5rem 0}
+.integrity-inner{display:flex;align-items:flex-start;gap:.75rem}
+.integrity-inner svg{flex-shrink:0;margin-top:.125rem}
+.integrity-inner p{font-size:.875rem;color:var(--gei-text-muted)}
+.integrity-inner strong{color:var(--gei-text)}
+
+/* Disciplines grid */
+.disciplines{padding:4rem 0}
+@media(min-width:640px){.disciplines{padding:5rem 0}}
+.section-title{font-size:1.875rem;font-weight:700;text-align:center}
+@media(min-width:640px){.section-title{font-size:2.25rem}}
+.section-sub{margin-top:.75rem;color:var(--gei-text-muted);font-size:1.125rem;max-width:42rem;margin-left:auto;margin-right:auto;text-align:center}
+.grid-3{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:3rem}
+@media(min-width:640px){.grid-3{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+.discipline-card{display:block;background:var(--gei-surface);border:1px solid var(--gei-border);border-radius:.75rem;padding:1.5rem;transition:transform .2s,box-shadow .2s,border-color .2s}
+.discipline-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(47,210,255,.15);border-color:rgba(47,210,255,.5)}
+.discipline-card svg{color:var(--gei-cyan);margin-bottom:1rem}
+.discipline-card .subtitle{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--gei-magenta);margin-bottom:.25rem}
+.discipline-card h3{font-size:1.25rem;font-weight:700;margin-bottom:.75rem}
+.discipline-card p{font-size:.875rem;color:var(--gei-text-muted);line-height:1.625;margin-bottom:1rem}
+.discipline-card .cta{display:inline-flex;align-items:center;font-size:.875rem;font-weight:600;color:var(--gei-cyan)}
+.discipline-card:hover .cta{text-decoration:underline}
+.discipline-card .cta svg{width:1rem;height:1rem;margin-left:.25rem}
+.other-link{text-align:center;margin-top:1.5rem;font-size:.875rem;color:var(--gei-text-muted);transition:color .15s}
+.other-link:hover{color:var(--gei-cyan)}
+
+/* How it works */
+.how-it-works{padding:4rem 0;background:rgba(17,24,39,.5);border-top:1px solid var(--gei-border);border-bottom:1px solid var(--gei-border)}
+.steps{display:grid;grid-template-columns:1fr;gap:2rem;margin-top:3rem}
+@media(min-width:768px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{text-align:center}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:3rem;height:3rem;border-radius:50%;background:rgba(47,210,255,.1);color:var(--gei-cyan);font-weight:700;font-size:1.125rem;margin-bottom:1rem}
+.step h3{font-size:1.125rem;font-weight:600;margin-bottom:.5rem}
+.step p{font-size:.875rem;color:var(--gei-text-muted)}
+
+/* Research preview */
+.research-preview{padding:4rem 0}
+.grid-2{display:grid;grid-template-columns:1fr;gap:1.5rem;max-width:56rem;margin:3rem auto 0}
+@media(min-width:768px){.grid-2{grid-template-columns:repeat(2,1fr)}}
+.research-card{display:block;background:var(--gei-surface);border:1px solid var(--gei-border);border-radius:.5rem;padding:1.25rem;transition:border-color .15s}
+.research-card:hover{border-color:rgba(47,210,255,.5)}
+.research-card-header{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem}
+.research-card-code{font-size:.75rem;font-family:monospace;background:rgba(47,210,255,.1);color:var(--gei-cyan);padding:.125rem .5rem;border-radius:.25rem}
+.research-card-cat{font-size:.75rem;color:var(--gei-text-muted)}
+.research-card h3{font-weight:600}
+.research-card .status{font-size:.75rem;color:var(--gei-text-muted);margin-top:.25rem}
+.view-all{text-align:center;margin-top:2rem}
+.view-all a{display:inline-flex;align-items:center;color:var(--gei-cyan);font-weight:500}
+.view-all a:hover{text-decoration:underline}
+.view-all svg{width:1rem;height:1rem;margin-left:.25rem}
+
+/* Publication */
+.publication{padding:3rem 0;background:rgba(17,24,39,.5);border-top:1px solid var(--gei-border);border-bottom:1px solid var(--gei-border);text-align:center}
+.publication p{color:var(--gei-text-muted);margin-bottom:1.5rem}
+.pub-links{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem}
+@media(min-width:640px){.pub-links{flex-direction:row}}
+.btn-blue{display:inline-flex;align-items:center;padding:.625rem 1.25rem;background:var(--gei-blue);color:#fff;font-weight:600;border-radius:.5rem;transition:opacity .15s}
+.btn-blue:hover{opacity:.9}
+.doi-link{font-size:.875rem;color:var(--gei-text-muted);transition:color .15s}
+.doi-link:hover{color:var(--gei-cyan)}
+
+/* FAQ */
+.faq{padding:4rem 0}
+.faq-list{max-width:48rem;margin:2.5rem auto 0;display:flex;flex-direction:column;gap:1.5rem}
+details{background:var(--gei-surface);border:1px solid var(--gei-border);border-radius:.5rem;overflow:hidden}
+summary{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;cursor:pointer;font-weight:600;color:var(--gei-text);transition:color .15s;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--gei-cyan)}
+summary svg{width:1.25rem;height:1.25rem;color:var(--gei-text-muted);flex-shrink:0;margin-left:.5rem;transition:transform .2s}
+details[open] summary svg{transform:rotate(180deg)}
+details .answer{padding:0 1.5rem 1rem;font-size:.875rem;color:var(--gei-text-muted);line-height:1.625}
+
+/* Final CTA */
+.final-cta{padding:4rem 0;background:linear-gradient(to right,rgba(61,61,234,.2),rgba(47,210,255,.1),rgba(243,16,186,.2));border-top:1px solid var(--gei-border);text-align:center}
+.final-cta p{color:var(--gei-text-muted);margin-bottom:2rem;max-width:36rem;margin-left:auto;margin-right:auto}
+.final-cta h2{margin-bottom:1rem}
+.final-actions{display:flex;flex-direction:column;gap:1rem;justify-content:center}
+@media(min-width:640px){.final-actions{flex-direction:row}}
+.btn-ghost{display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1.5rem;border:1px solid var(--gei-border);color:var(--gei-text);font-weight:500;border-radius:.5rem;transition:background .15s;background:none}
+.btn-ghost:hover{background:var(--gei-surface)}
+
+/* Footer */
+.footer{background:var(--gei-near-black);border-top:1px solid var(--gei-border);margin-top:auto;padding:3rem 0}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:2rem}
+@media(min-width:640px){.footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.footer-grid{grid-template-columns:repeat(4,1fr)}}
+.footer h3{color:var(--gei-cyan);font-weight:700;font-size:1.125rem;margin-bottom:.75rem}
+.footer h4{color:var(--gei-text);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem}
+.footer p,.footer a{font-size:.875rem;color:var(--gei-text-muted);line-height:1.625}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer a:hover{color:var(--gei-cyan)}
+.footer-bottom{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--gei-border)}
+.footer-bottom p{font-size:.75rem;color:var(--gei-text-muted);text-align:center}
+.footer-bottom a{color:var(--gei-cyan)}
+.footer-bottom a:hover{text-decoration:underline}
+
+/* Logo */
+.logo{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo img{object-fit:contain}
+.logo-sm img{width:40px;height:40px}
+.logo-lg img{width:120px;height:120px}
+
+/* Logo animations */
+@keyframes glow-pulse{
+  0%,100%{filter:drop-shadow(0 0 6px rgba(47,210,255,.3));transform:scale(1)}
+  50%{filter:drop-shadow(0 0 20px rgba(47,210,255,.8));transform:scale(1.04)}
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+@keyframes shimmer{
+  0%,100%{filter:drop-shadow(0 0 4px rgba(243,16,186,.3)) brightness(1)}
+  50%{filter:drop-shadow(0 0 16px rgba(243,16,186,.7)) brightness(1.15)}
+}
+@keyframes breathe{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 4px rgba(61,61,234,.3))}
+  50%{transform:scale(1.06);filter:drop-shadow(0 0 14px rgba(61,61,234,.6))}
+}
+@keyframes slide-up{
+  0%{transform:translateY(24px);opacity:0}
+  100%{transform:translateY(0);opacity:1}
+}
+@keyframes water-glint{
+  0%,100%{transform:translateY(0) scale(1);filter:drop-shadow(0 0 5px rgba(47,210,255,.24))}
+  50%{transform:translateY(-3px) scale(1.025);filter:drop-shadow(0 0 15px rgba(47,210,255,.58))}
+}
+@keyframes halo-drift{
+  0%,100%{transform:translateY(0) rotate(-1deg);filter:drop-shadow(0 0 5px rgba(61,61,234,.28))}
+  50%{transform:translateY(-4px) rotate(1deg);filter:drop-shadow(0 0 13px rgba(255,157,242,.42))}
+}
+@keyframes ripple-breathe{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 4px rgba(47,210,255,.2))}
+  50%{transform:scale(1.035);filter:drop-shadow(0 0 17px rgba(47,210,255,.52))}
+}
+@media(prefers-reduced-motion:reduce){
+  [data-logo-effect]{animation:none!important;transform:none!important;transition:none!important;filter:none!important}
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--gei-near-black)}
+::-webkit-scrollbar-thumb{background:var(--gei-border);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--gei-text-muted)}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="#" class="header-brand">
+      <span class="logo logo-sm" data-logo-effect="pending"><img src="https://assets.zyrosite.com/YZ9jg46Bljs5wOZR/gei-open-research-YdUCaa1Wafpd7vkJ.png" alt="GEI Logo" width="40" height="40"></span>
+      <span>GEI<span class="header-brand-sub">Research</span></span>
+    </a>
+    <nav class="nav">
+      <a href="#">Home</a>
+      <a href="#research-preview">Evidence Room</a>
+      <a href="#disciplines">Disciplines</a>
+      <a href="#final-cta">Apply</a>
+    </nav>
+    <div class="header-auth">
+      <a href="#" style="font-size:.875rem;color:var(--gei-text-muted)">Sign In</a>
+      <a href="#" class="btn-sign-up">Sign Up</a>
+    </div>
+    <button class="mobile-toggle" aria-label="Toggle menu" onclick="document.getElementById('mobile-nav').classList.toggle('open')">
+      <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div class="container">
+    <nav id="mobile-nav" class="mobile-nav">
+      <a href="#">Home</a>
+      <a href="#research-preview">Evidence Room</a>
+      <a href="#disciplines">Disciplines</a>
+      <a href="#final-cta">Apply</a>
+      <div class="mobile-auth">
+        <a href="#" style="font-size:.875rem;color:var(--gei-text-muted)">Sign In</a>
+        <a href="#" class="btn-sign-up" style="text-align:center">Sign Up</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero blueprint-grid">
+    <div class="flow-lines">
+      <div class="container">
+        <div class="hero-content">
+          <div style="margin-bottom:1.5rem">
+            <span class="logo logo-lg" data-logo-effect="pending"><img src="https://assets.zyrosite.com/YZ9jg46Bljs5wOZR/gei-open-research-YdUCaa1Wafpd7vkJ.png" alt="GEI Open Research Initiative" width="120" height="120"></span>
+          </div>
+          <h1><span class="gradient-text">A DAM TEAM OF GENIUS.</span></h1>
+          <p class="hero-sub">Six disciplines. One open investigation.</p>
+          <p class="hero-desc">GEI invites Hebrew scholars, biblical researchers, engineers, hydrologists, archaeologists, and mechanical engineers to examine an alternative reading of Genesis 1&ndash;6. Bring your expertise. Challenge the model. Help us document what the evidence does &mdash; and does not &mdash; support.</p>
+          <p class="hero-note">You bring the expertise. We'll bring the blueprint. Challenge the blueprint. Agreement is not required.</p>
+          <div class="hero-actions">
+            <a href="#research-preview" class="btn-primary">EXPLORE THE RESEARCH</a>
+            <a href="#final-cta" class="btn-outline">APPLY TO CONTRIBUTE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrity Notice -->
+  <section class="integrity">
+    <div class="container">
+      <div class="integrity-inner">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#2fd2ff" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+        <p><strong>Research integrity notice:</strong> GEI is not presented as academic consensus, an established Hebrew translation, proven ancient hydraulic technology, or confirmed archaeological discovery. This initiative distinguishes observation, analogy, hypothesis, evidence, and unresolved questions. Critical review and corrections are invited.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Six Disciplines -->
+  <section class="disciplines" id="disciplines">
+    <div class="container">
+      <h2 class="section-title">Six Disciplines, One Investigation</h2>
+      <p class="section-sub">Each pathway invites domain expertise to examine a specific dimension of the GEI framework.</p>
+      <div class="grid-3">
+
+        <a href="#final-cta" class="discipline-card">
+          <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+          <p class="subtitle">THE LANGUAGE INVESTIGATION</p>
+          <h3>Hebrew Scholars</h3>
+          <p>Help distinguish linguistic evidence from linguistic speculation. Review Hebrew vocabulary, morphology, syntax, semantic range, proposed word associations, and departures from established scholarship.</p>
+          <span class="cta">EXAMINE THE HEBREW <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </a>
+
+        <a href="#final-cta" class="discipline-card">
+          <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+          <p class="subtitle">THE TEXTUAL INVESTIGATION</p>
+          <h3>Biblical Researchers</h3>
+          <p>Review Genesis 1&ndash;6 literary structure, sequence, genre, translation choices, contextual interpretation, canonical context, alternative readings, and whether GEI mappings follow from the text.</p>
+          <span class="cta">EXAMINE THE TEXT <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </a>
+
+        <a href="#final-cta" class="discipline-card">
+          <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21"/></svg>
+          <p class="subtitle">THE STRUCTURAL INVESTIGATION</p>
+          <h3>Civil Engineers</h3>
+          <p>Review physical coherence of the proposed containment system: foundations, dam/reservoir arrangement, outlets, channels, loads, materials, elevation, and structural sequencing.</p>
+          <span class="cta">TEST THE STRUCTURE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </a>
+
+        <a href="#final-cta" class="discipline-card">
+          <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+          <p class="subtitle">THE WATER INVESTIGATION</p>
+          <h3>Hydrologists</h3>
+          <p>Review watershed logic, collection, drainage, water balance, storage, controlled release, flow direction, elevation/head, and whether proposed sequences resemble recognizable water-management principles.</p>
+          <span class="cta">INVESTIGATE THE FLOW <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </a>
+
+        <a href="#final-cta" class="discipline-card">
+          <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+          <p class="subtitle">THE ANCIENT TECHNOLOGY INVESTIGATION</p>
+          <h3>Archaeologists</h3>
+          <p>Review securely dated evidence for ancient dams, canals, reservoirs, irrigation, mills, and water-control technologies. Evaluate chronology, geography, cultural context, and what physical evidence would be required.</p>
+          <span class="cta">EXAMINE THE ANCIENT EVIDENCE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </a>
+
+        <a href="#final-cta" class="discipline-card">
+          <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <p class="subtitle">THE MECHANICAL INVESTIGATION</p>
+          <h3>Mechanical Engineers</h3>
+          <p>Review proposed waterwheel/mill connections, operating principles, flow and head requirements, power transfer, shafts/gearing, and mechanical plausibility.</p>
+          <span class="cta">TEST THE MECHANISM <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </a>
+
+      </div>
+      <div style="text-align:center;margin-top:1.5rem">
+        <a href="#final-cta" class="other-link">Other / Interdisciplinary contributions are also welcome &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">01</div><h3>Explore</h3><p>Browse the public Evidence Room. Read the research entries, claims, and open questions.</p></div>
+        <div class="step"><div class="step-num">02</div><h3>Apply</h3><p>Express your interest and select your discipline. No credentials required for initial expression of interest.</p></div>
+        <div class="step"><div class="step-num">03</div><h3>Contribute</h3><p>Submit questions, critiques, analyses, source references, or corrections through the researcher workspace.</p></div>
+        <div class="step"><div class="step-num">04</div><h3>Review</h3><p>Contributions are reviewed for rigor and relevance. Published work documents what the evidence does and does not support.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Preview -->
+  <section class="research-preview" id="research-preview">
+    <div class="container">
+      <h2 class="section-title">Research Preview</h2>
+      <p class="section-sub">Current investigation threads in the Evidence Room</p>
+      <div class="grid-2">
+        <a href="#" class="research-card"><div class="research-card-header"><span class="research-card-code">GEI-01</span><span class="research-card-cat">Linguistic Question</span></div><h3>The Adam / A-DAM Hypothesis</h3><p class="status">Awaiting expert review</p></a>
+        <a href="#" class="research-card"><div class="research-card-header"><span class="research-card-code">GEI-02</span><span class="research-card-cat">Textual Analysis</span></div><h3>Genesis 1&ndash;6 Textual Mapping</h3><p class="status">Awaiting expert review</p></a>
+        <a href="#" class="research-card"><div class="research-card-header"><span class="research-card-code">GEI-03</span><span class="research-card-cat">Engineering Hypothesis</span></div><h3>Mountain-to-Ocean Hydraulic Model</h3><p class="status">Awaiting expert review</p></a>
+        <a href="#" class="research-card"><div class="research-card-header"><span class="research-card-code">GEI-04</span><span class="research-card-cat">Research Status Overview</span></div><h3>Claims, Evidence &amp; Open Questions</h3><p class="status">Awaiting expert review</p></a>
+      </div>
+      <div class="view-all"><a href="#">View full Evidence Room <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- Publication -->
+  <section class="publication">
+    <div class="container">
+      <h2 class="section-title" style="margin-bottom:1rem">Published Source</h2>
+      <p>The foundational GEI document is publicly available for review and citation.</p>
+      <div class="pub-links">
+        <a href="https://zenodo.org/records/17316846" target="_blank" rel="noopener noreferrer" class="btn-blue">View on Zenodo</a>
+        <a href="https://doi.org/10.5281/zenodo.17316845" target="_blank" rel="noopener noreferrer" class="doi-link">DOI: 10.5281/zenodo.17316845</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details><summary>What is GEI? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></summary><div class="answer">Genesis Engineered Interpretation (GEI) is an alternative interpretive framework that examines Genesis 1&ndash;6 through proposed linguistic, textual, hydraulic, archaeological, and mechanical-engineering comparisons. It is a research hypothesis, not an established academic position.</div></details>
+        <details><summary>Do I need academic credentials to participate? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></summary><div class="answer">No institutional affiliation or formal credentials are required to express interest. We welcome independent researchers, professionals, students, and curious minds. However, technical contributions will be evaluated on their merits and methodology.</div></details>
+        <details><summary>Is GEI claiming to be proven science? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></summary><div class="answer">No. GEI distinguishes between observations, analogies, hypotheses, and evidence. The initiative exists specifically to invite critical examination &mdash; agreement is not required or expected.</div></details>
+        <details><summary>What happens after I apply? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></summary><div class="answer">Applications are reviewed by the research team. You'll receive a status update and, if accepted, access to the contributor workspace where you can submit analyses, questions, critiques, and references.</div></details>
+        <details><summary>Can I just follow the research without contributing? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></summary><div class="answer">Yes. The Evidence Room and research library are publicly accessible. You can also select a "follow the research" option when expressing interest.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta" id="final-cta">
+    <div class="container">
+      <h2 class="section-title">Join the Investigation</h2>
+      <p>Whether you're a Hebrew scholar, engineer, archaeologist, or curious researcher &mdash; your expertise matters. Help document what the evidence supports.</p>
+      <div class="final-actions">
+        <a href="https://github.com/jawa-dam/GEI-Open-Research-Initiative" target="_blank" rel="noopener noreferrer" class="btn-primary">APPLY TO CONTRIBUTE</a>
+        <a href="#research-preview" class="btn-ghost">Browse the Evidence Room</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>GEI Open Research Initiative</h3>
+        <p>Six disciplines. One open investigation. Examining an alternative reading of Genesis 1&ndash;6 through rigorous, transparent research.</p>
+      </div>
+      <div>
+        <h4>Research</h4>
+        <ul>
+          <li><a href="#research-preview">Evidence Room</a></li>
+          <li><a href="#disciplines">Disciplines</a></li>
+          <li><a href="https://zenodo.org/records/17316846" target="_blank" rel="noopener noreferrer">GEI Publication (Zenodo)</a></li>
+          <li><a href="https://doi.org/10.5281/zenodo.17316845" target="_blank" rel="noopener noreferrer">DOI Record</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Participate</h4>
+        <ul>
+          <li><a href="#final-cta">Apply to Contribute</a></li>
+          <li><a href="#">Researcher Sign In</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="https://yalltoo.com" target="_blank" rel="noopener noreferrer">Y'allToo</a></li>
+          <li><a href="https://orcid.org/0009-0008-1147-5913" target="_blank" rel="noopener noreferrer">ORCID Profile</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Y'allToo / Genesis Engineered Interpretation. Research lead: Wilbert Bouie Jr.</p>
+      <p style="margin-top:.5rem">GEI is a research hypothesis under investigation. It is not presented as academic consensus, an established Hebrew translation, or confirmed archaeological discovery.</p>
+      <p style="margin-top:1rem">This application does not verify academic credentials or imply institutional endorsement.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var effects = [
+    { name:"cyan-glow", animation:"glow-pulse 3.4s ease-in-out infinite", filter:"drop-shadow(0 0 10px rgba(47,210,255,0.42))" },
+    { name:"gentle-float", animation:"float 5s ease-in-out infinite", filter:"" },
+    { name:"water-shimmer", animation:"shimmer 3.2s ease-in-out infinite", filter:"drop-shadow(0 0 7px rgba(47,210,255,0.34))" },
+    { name:"soft-breathe", animation:"breathe 5.5s ease-in-out infinite", filter:"drop-shadow(0 0 9px rgba(61,61,234,0.38))" },
+    { name:"water-current", animation:"water-glint 4.5s ease-in-out infinite", filter:"" },
+    { name:"halo-drift", animation:"halo-drift 6s ease-in-out infinite", filter:"" },
+    { name:"ripple", animation:"ripple-breathe 4.8s ease-in-out infinite", filter:"" },
+    { name:"arrival", animation:"slide-up 0.9s cubic-bezier(0.16,1,0.3,1) both", filter:"drop-shadow(0 0 7px rgba(47,210,255,0.3))" }
+  ];
+  var pick = effects[Math.floor(Math.random() * effects.length)];
+  var logos = document.querySelectorAll("[data-logo-effect]");
+  for (var i = 0; i < logos.length; i++) {
+    logos[i].style.animation = pick.animation;
+    if (pick.filter) logos[i].style.filter = pick.filter;
+    logos[i].setAttribute("data-logo-effect", pick.name);
+  }
+})();
+</script>
+</body>
+</html>
