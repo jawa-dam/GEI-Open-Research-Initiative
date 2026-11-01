@@ -202,3 +202,48 @@ select:focus {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gei-text-muted);
 }
+
+
+/* Additional restrained water-inspired logo effects */
+@keyframes water-glint {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 5px rgba(47, 210, 255, 0.24));
+  }
+  50% {
+    transform: translateY(-3px) scale(1.025);
+    filter: drop-shadow(0 0 15px rgba(47, 210, 255, 0.58));
+  }
+}
+
+@keyframes halo-drift {
+  0%, 100% {
+    transform: translateY(0) rotate(-1deg);
+    filter: drop-shadow(0 0 5px rgba(61, 61, 234, 0.28));
+  }
+  50% {
+    transform: translateY(-4px) rotate(1deg);
+    filter: drop-shadow(0 0 13px rgba(255, 157, 242, 0.42));
+  }
+}
+
+@keyframes ripple-breathe {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(47, 210, 255, 0.2));
+  }
+  50% {
+    transform: scale(1.035);
+    filter: drop-shadow(0 0 17px rgba(47, 210, 255, 0.52));
+  }
+}
+
+/* Honor visitors who request reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  [data-logo-effect] {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+    filter: none !important;
+  }
+}
