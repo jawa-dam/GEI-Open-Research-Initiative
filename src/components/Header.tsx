@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import Logo from "./Logo";
 
 interface HeaderProps {
   user?: {
@@ -51,18 +52,7 @@ export default function Header({ user }: HeaderProps) {
             href="/"
             className="flex items-center gap-2 text-gei-cyan font-bold text-lg tracking-tight"
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="w-6 h-6"
-              aria-hidden="true"
-            >
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-              <path d="M2 12l10 5 10-5" />
-            </svg>
+            <Logo size="sm" />
             <span>
               GEI<span className="text-gei-text-muted font-normal ml-1 hidden sm:inline">Research</span>
             </span>
