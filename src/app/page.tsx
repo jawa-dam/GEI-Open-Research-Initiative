@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Logo from "@/components/Logo";
 import { DISCIPLINES, EXTERNAL_LINKS } from "@/lib/constants";
 
 const DISCIPLINE_ICONS: Record<string, React.ReactNode> = {
@@ -70,6 +71,9 @@ export default function HomePage() {
           <div className="flow-lines relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
               <div className="max-w-3xl">
+                <div className="mb-6">
+                  <Logo size="lg" />
+                </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
                   <span className="gradient-text">A DAM TEAM OF GENIUS.</span>
                 </h1>
